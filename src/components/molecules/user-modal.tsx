@@ -5,7 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { iUser } from "@/src/app/@types/User.type"
+import { iUser } from "@/src/@types/User.type"
 import { UserForm } from "./user-form"
 import { UserFormFields } from '@/src/hooks/useForm'; 
 

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { iUser } from '../app/@types/User.type'
+import { iUser } from "../@types/User.type"
 import {HTTP_LIST} from "@/src/constants/http"
 
 console.log(process.env.NEXT_PUBLIC_BASE_URL, 'proccess.env.NEXT_BASE_URL')

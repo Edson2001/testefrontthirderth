@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Teste Thirderth
 
-## Getting Started
+Uma breve descrição do  projeto e o que ele faz.
 
-First, run the development server:
+## Tecnologias Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **React**: Biblioteca para construção de interfaces de usuário.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
+- **Next.js**: Framework React para aplicações renderizadas no lado do servidor.
+- **Redux Toolkit (RTK Query)**: Ferramenta para gerenciamento de estado e requisições API.
+- **React Hot Toast**: Biblioteca para exibir notificações em tempo real.
+- **Atomic Design**: Abordagem para organização de componentes em níveis hierárquicos.
+
+## Estrutura do Projeto
+
+A estrutura do projeto segue o conceito de Atomic Design. Os componentes são organizados nas seguintes pastas:
+
+```
+src/
+|-- components/           # Componentes organizados por átomo, molécula, organismo, template e página
+|   |-- molecules/        # Componentes moleculares (ex: formulários, cards)
+|   |-- organisms/        # Componentes organizacionais (ex: cabeçalhos, rodapés)
+|-- app 
+|-- |-- pages/            # Páginas que utilizam os templates
+|-- services/             # Serviços API e lógica de negócios
+|-- store/                # Configuração do Redux
+|-- styles/               # Arquivos de estilo globais
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Como Começar
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone o repositório**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/Edson2001/testefrontthirderth
+   ```
 
-## Learn More
+2. **Navegue até a pasta do projeto**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   cd projecto
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Instale as dependências**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npm install
+   ```
 
-## Deploy on Vercel
+4. **Inicie o servidor de desenvolvimento**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. **Acesse o projeto em seu navegador**
+
+   No .env use NEXT_PUBLIC_BASE_URL=https://jsonplaceholder.typicode.com
+   Abra o seu navegador e acesse `http://localhost:3000`.
