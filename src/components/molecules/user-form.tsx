@@ -9,7 +9,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Grid from '@mui/material/Grid2';
 import { Controller, useForm } from 'react-hook-form';
 
-export function UserForm({ isEdit, loading }: { isEdit: boolean, loading: boolean }): React.JSX.Element {
+export function UserForm({ isEdit, loading,  }: { isEdit: boolean, loading: boolean, }): React.JSX.Element {
 
     console.log(isEdit)
     const form = useForm({})
@@ -46,7 +46,6 @@ export function UserForm({ isEdit, loading }: { isEdit: boolean, loading: boolea
                             render={({ field: { onChange, value } }) => (
                                 <OutlinedInput
                                     value={value}
-
                                     onChange={onChange}
                                     label="Email"
                                 />
@@ -58,7 +57,7 @@ export function UserForm({ isEdit, loading }: { isEdit: boolean, loading: boolea
                 <Grid md={6} xs={12}  >
                     <Button
                         fullWidth
-                        onClick={handleOk}
+                        onClick={()=> console.log("")}
                         variant="contained"
                         disabled={loading}
                     >Salvar dados</Button>
