@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Divider from '@mui/material/Divider';
 import {iUser} from "@/src/app/@types/User.type"
-import {Trash} from "lucide-react"
+import {Trash, Pencil} from "lucide-react"
 import { useMemo } from 'react';
 import {
     MaterialReactTable,
@@ -30,12 +30,12 @@ export function TableUser({
         () => [
             {
                 accessorKey: 'name',
-                header: 'Fornecedor',
+                header: 'Nome',
                 size: 150,
             },
             {
-                accessorKey: 'typeTeacher',
-                header: 'Tipo',
+                accessorKey: 'email',
+                header: 'Email',
                 size: 150,
             },
             {
@@ -48,7 +48,7 @@ export function TableUser({
                                 <Trash />
                             </Button>
                             <Button onClick={()=> onEdit(row.original)}>
-                               {/*  <Pencil /> */}
+                                <Pencil />
                             </Button>
                         </>
                     )
