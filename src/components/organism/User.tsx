@@ -5,7 +5,7 @@ import Confirmation from "../molecules/Confirmation"
 
 export default function User() {
 
-  const { data, isLoading, isConfirmationOpen, isDeletingUser, handleClose, confirmDelete } = useUser()
+  const { data, isLoading, isConfirmationOpen, isDeletingUser, handleClose, confirmDelete, handleDelete } = useUser()
 
   return (
     <main className="flex flex-col justify-center items-center w-full px-4">
@@ -14,7 +14,7 @@ export default function User() {
       <TableUser
         fullRows={data ?? []}
         loading={isLoading}
-        onDelete={() => console.log("")}
+        onDelete={(user) => handleDelete(user?.id)}
         onEdit={() => console.log("")}
       />
 

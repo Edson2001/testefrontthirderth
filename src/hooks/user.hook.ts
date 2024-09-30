@@ -5,6 +5,7 @@ import {
     useUpdateUserMutation,
     useDeleteUserMutation
 } from "@/src/services/user.service"
+import toast from 'react-hot-toast';
 
 export const useUser = () => {
 
@@ -28,9 +29,9 @@ export const useUser = () => {
         if (selectedUserId) {
             try {
                 await deleteUser(selectedUserId).unwrap();
-                console.log("Usuário deletado com sucesso");
+                toast('Usuário deletado com sucesso')
             } catch (error) {
-                console.error("Erro ao deletar o usuário:", error);
+                toast.error('Erro ao deletar o usuário:')
             } finally {
                 setIsConfirmationOpen(false);
             }
