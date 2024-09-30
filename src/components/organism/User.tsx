@@ -8,7 +8,8 @@ import Button from '@mui/material/Button';
 export default function User() {
 
   const {
-    data,
+ 
+    userList,
     isLoading,
     isConfirmationOpen,
     isDeletingUser,
@@ -31,7 +32,7 @@ export default function User() {
       </div>
 
       <TableUser
-        fullRows={data ?? []}
+        fullRows={userList ?? []}
         loading={isLoading}
         onDelete={(user) => handleDelete(user?.id)}
         onEdit={(user) => handleOpenModal(user)}
@@ -52,7 +53,7 @@ export default function User() {
         loading={isLoading}
         isEdit={isEdit}
         handleSave={handleSave}
-        user={selectedUser}
+        defaultValues={selectedUser}
       />
 
     </main>

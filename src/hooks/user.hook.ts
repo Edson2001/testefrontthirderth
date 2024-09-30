@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useCallback, useEffect } from "react"
 import {
     useGetUsersQuery,
     useCreateUserMutation,
@@ -6,7 +6,7 @@ import {
     useDeleteUserMutation
 } from "@/src/services/user.service"
 import toast from 'react-hot-toast';
-import {iUser} from "@/src/app/@types/User.type"
+import { iUser } from "@/src/app/@types/User.type"
 
 export const useUser = () => {
 
@@ -15,6 +15,7 @@ export const useUser = () => {
     const [isEdit, setIsEdit] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
+    const [userList, setUserList] = useState<iUser[]>([]);
 
     const [createUser, { isLoading: isCreatingUser, error: createUserError }] = useCreateUserMutation();
 
@@ -24,9 +25,23 @@ export const useUser = () => {
     const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
     const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
 
+    const userListHandle = useCallback((data)=>{
+        setUserList(data)
+    }, [])
+
     const handleDelete = (userId: number) => {
         setSelectedUserId(userId);
         setIsConfirmationOpen(true);
+    };
+
+    const handleUserUpdate = (newUser: iUser) => {
+        if (isEdit) {
+            setUserList((prev) =>
+                prev.map((user) => (user.id === newUser.id ? newUser : user))
+            );
+        } else {
+            setUserList((prev) => [...prev, newUser]);
+        }
     };
 
     const handleOpenModal = (user: iUser | null = null) => {
@@ -41,7 +56,8 @@ export const useUser = () => {
                 await updateUser({ ...selectedUser, ...data }).unwrap();
                 toast("Usuário atualizado com sucesso");
             } else {
-                await createUser(data).unwrap();
+                const resultUser = await createUser(data).unwrap();
+                handleUserUpdate(resultUser)
                 toast("Usuário criado com sucesso");
             }
             setModalOpen(false);
@@ -55,6 +71,7 @@ export const useUser = () => {
         if (selectedUserId) {
             try {
                 await deleteUser(selectedUserId).unwrap();
+                setUserList((prev) => prev.filter((user) => user.id !== selectedUserId))
                 toast('Usuário deletado com sucesso')
             } catch (error: unknown) {
                 console.log(error)
@@ -75,8 +92,13 @@ export const useUser = () => {
         setSelectedUser(null);
     };
 
+    useEffect(()=>{
+        userListHandle(data)
+    }, [data])
+
     return {
         data,
+        userList,
         isLoading,
         createUser,
         updateUser,
