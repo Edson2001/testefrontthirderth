@@ -19,6 +19,7 @@ export const useUserForm = (defaultValues?: Partial<UserFormFields>) => {
 
 
   const handleSubmit = (onSubmit: (data: UserFormFields) => void) => {
+    console.log("submit")
     return form.handleSubmit(onSubmit);
   };
 

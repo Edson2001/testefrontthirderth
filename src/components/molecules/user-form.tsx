@@ -2,23 +2,23 @@
 
 import * as React from 'react';
 import Button from '@mui/material/Button';
-
+import { FormHelperText } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Grid from '@mui/material/Grid2';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
+import { useUserForm } from "@/src/hooks/useForm"
+import { UserFormFields } from '@/src/hooks/useForm';
 
-export function UserForm({ isEdit, loading,  }: { isEdit: boolean, loading: boolean, }): React.JSX.Element {
+export function UserForm({ isEdit, loading, onSubmit, defaultValues }:
+    { isEdit: boolean, loading: boolean, onSubmit: (data: UserFormFields) => void, defaultValues?: UserFormFields }): React.JSX.Element {
 
-    console.log(isEdit)
-    const form = useForm({})
+    const { control, handleSubmit, formState: { errors } } = useUserForm(defaultValues);
 
     return (
         <form
-            onSubmit={(event) => {
-                event.preventDefault();
-            }}
+            onSubmit={handleSubmit(onSubmit)}
         >
             <Grid spacing={2} columns={1}>
                 <Grid md={6} xs={12} marginBottom={2}>
@@ -26,7 +26,7 @@ export function UserForm({ isEdit, loading,  }: { isEdit: boolean, loading: bool
                         <InputLabel>Nome</InputLabel>
                         <Controller
                             name={'name'}
-                            control={form.control}
+                            control={control}
                             render={({ field: { onChange, value } }) => (
                                 <OutlinedInput
                                     value={value}
@@ -35,6 +35,7 @@ export function UserForm({ isEdit, loading,  }: { isEdit: boolean, loading: bool
                                 />
                             )}
                         />
+                        {errors?.name ? <FormHelperText>{errors?.name?.message}</FormHelperText> : null}
                     </FormControl>
                 </Grid>
                 <Grid md={6} xs={12} marginBottom={3}>
@@ -42,7 +43,7 @@ export function UserForm({ isEdit, loading,  }: { isEdit: boolean, loading: bool
                         <InputLabel>Email</InputLabel>
                         <Controller
                             name={'email'}
-                            control={form.control}
+                            control={control}
                             render={({ field: { onChange, value } }) => (
                                 <OutlinedInput
                                     value={value}
@@ -51,16 +52,17 @@ export function UserForm({ isEdit, loading,  }: { isEdit: boolean, loading: bool
                                 />
                             )}
                         />
+                        {errors?.email ? <FormHelperText>{errors?.email?.message}</FormHelperText> : null}
                     </FormControl>
                 </Grid>
 
                 <Grid md={6} xs={12}  >
                     <Button
                         fullWidth
-                        onClick={()=> console.log("")}
+                        type="submit"
                         variant="contained"
                         disabled={loading}
-                    >Salvar dados</Button>
+                    >{isEdit ? "Atualizar Dados" : "Salvar Dados"}</Button>
                 </Grid>
             </Grid>
 

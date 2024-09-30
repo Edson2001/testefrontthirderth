@@ -6,9 +6,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import {UserForm} from "./user-form"
+import { UserForm } from "./user-form"
+import { UserFormFields } from '@/src/hooks/useForm'; 
 
-export default function UserModal({ handleClose, open, loading, isEdit }: { open: boolean, handleClose: () => void, loading: boolean,  isEdit: boolean }) {
+export default function UserModal({ handleClose, handleSave, open, loading, isEdit, defaultValues }:
+    { open: boolean, handleClose: () => void, handleSave: (data: UserFormFields) => void, loading: boolean, isEdit: boolean, defaultValues?: UserFormFields }) {
     return (
         <React.Fragment>
             <Dialog
@@ -17,21 +19,23 @@ export default function UserModal({ handleClose, open, loading, isEdit }: { open
                 aria-labelledby="draggable-dialog-title"
             >
                 <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-                   Informações
+                    {isEdit ? "Editar Usuário" : "Criar Usuário"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                       <UserForm 
+                        <UserForm
                             isEdit={isEdit}
                             loading={loading}
-                       />
+                            onSubmit={handleSave}  
+                            defaultValues={defaultValues}
+                        />
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose}>
                         Cancelar
                     </Button>
-                   {/*  <Button disabled={loading} onClick={handleOk}>Continuar</Button> */}
+                    {/*  <Button disabled={loading} onClick={handleOk}>Continuar</Button> */}
                 </DialogActions>
             </Dialog>
         </React.Fragment>

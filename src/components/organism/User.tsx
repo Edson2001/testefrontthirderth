@@ -3,23 +3,38 @@ import { TableUser } from "../molecules/tble-user"
 import { useUser } from "@/src/hooks/user.hook"
 import Confirmation from "../molecules/Confirmation"
 import UserModal from "../molecules/user-modal"
+import Button from '@mui/material/Button';
 
 export default function User() {
 
-  const { data, isLoading, isConfirmationOpen, isDeletingUser, handleClose, confirmDelete, handleDelete } = useUser()
+  const {
+    data,
+    isLoading,
+    isConfirmationOpen,
+    isDeletingUser,
+    handleClose,
+    confirmDelete,
+    handleDelete,
+    handleOpenModal,
+    modalOpen,
+    isEdit,
+    handleSave,
+    handleModalClose,
+    selectedUser
+  } = useUser()
 
   return (
     <main className="flex flex-col justify-center items-center w-full px-1 ">
       <div>
         <h1 className="text-white tx-xl mb-5 mt-4 font-bold">Tabele de controle de usuários</h1>
-
+        <Button onClick={()=>handleOpenModal(null)} fullWidth variant="contained" >Criar usuário</Button>
       </div>
 
       <TableUser
         fullRows={data ?? []}
         loading={isLoading}
         onDelete={(user) => handleDelete(user?.id)}
-        onEdit={() => console.log("")}
+        onEdit={(user) => handleOpenModal(user)}
       />
 
       <Confirmation
@@ -31,11 +46,13 @@ export default function User() {
         open={isConfirmationOpen}
       />
 
-      <UserModal 
-        handleClose={()=> console.log("")}
-        isEdit={false}
-        loading={false}
-        open={true}
+      <UserModal
+        handleClose={handleModalClose}
+        open={modalOpen}
+        loading={isLoading}
+        isEdit={isEdit}
+        handleSave={handleSave}
+        user={selectedUser}
       />
 
     </main>
