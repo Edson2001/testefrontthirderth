@@ -10,9 +10,9 @@ import Grid from '@mui/material/Grid2';
 import { Controller } from 'react-hook-form';
 import { useUserForm } from "@/src/hooks/useForm"
 import { UserFormFields } from '@/src/hooks/useForm';
-
+import { iUser } from "@/src/app/@types/User.type"
 export function UserForm({ isEdit, loading, onSubmit, defaultValues }:
-    { isEdit: boolean, loading: boolean, onSubmit: (data: UserFormFields) => void, defaultValues?: UserFormFields }): React.JSX.Element {
+    { isEdit: boolean, loading: boolean, onSubmit: (data: UserFormFields) => void, defaultValues: iUser }): React.JSX.Element {
 
     const { control, handleSubmit, formState: { errors } } = useUserForm(defaultValues);
 
@@ -21,7 +21,7 @@ export function UserForm({ isEdit, loading, onSubmit, defaultValues }:
             onSubmit={handleSubmit(onSubmit)}
         >
             <Grid spacing={2} columns={1}>
-                <Grid md={6} xs={12} marginBottom={2}>
+                <Grid style={{ marginBottom: 12 }} >
                     <FormControl fullWidth required>
                         <InputLabel>Nome</InputLabel>
                         <Controller
@@ -38,7 +38,7 @@ export function UserForm({ isEdit, loading, onSubmit, defaultValues }:
                         {errors?.name ? <FormHelperText>{errors?.name?.message}</FormHelperText> : null}
                     </FormControl>
                 </Grid>
-                <Grid md={6} xs={12} marginBottom={3}>
+                <Grid style={{ marginBottom: 3 }} >
                     <FormControl fullWidth required>
                         <InputLabel>Email</InputLabel>
                         <Controller
@@ -56,7 +56,7 @@ export function UserForm({ isEdit, loading, onSubmit, defaultValues }:
                     </FormControl>
                 </Grid>
 
-                <Grid md={6} xs={12}  >
+                <Grid style={{ marginBottom: 12 }} >
                     <Button
                         fullWidth
                         type="submit"

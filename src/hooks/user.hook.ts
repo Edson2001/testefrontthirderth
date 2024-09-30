@@ -14,7 +14,7 @@ export const useUser = () => {
 
     const [isEdit, setIsEdit] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
-    const [selectedUser, setSelectedUser] = useState(null);
+    const [selectedUser, setSelectedUser] = useState<iUser | null>(null);
     const [userList, setUserList] = useState<iUser[]>([]);
 
     const [createUser, { isLoading: isCreatingUser, error: createUserError }] = useCreateUserMutation();
@@ -25,7 +25,7 @@ export const useUser = () => {
     const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
     const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
 
-    const userListHandle = useCallback((data)=>{
+    const userListHandle = useCallback((data: iUser[]) => {
         setUserList(data)
     }, [])
 
@@ -45,15 +45,19 @@ export const useUser = () => {
     };
 
     const handleOpenModal = (user: iUser | null = null) => {
-        setSelectedUser(user);
+        setSelectedUser(user)
         setIsEdit(!!user);
         setModalOpen(true);
     };
 
-    const handleSave = async (data) => {
+    const handleSave = async (data: iUser) => {
         try {
             if (isEdit && selectedUser) {
-                await updateUser({ ...selectedUser, ...data }).unwrap();
+                await updateUser({
+                    id: String(selectedUser.id),
+                    user: { ...data }
+                }).unwrap()
+                
                 toast("Usuário atualizado com sucesso");
             } else {
                 const resultUser = await createUser(data).unwrap();
@@ -92,8 +96,8 @@ export const useUser = () => {
         setSelectedUser(null);
     };
 
-    useEffect(()=>{
-        userListHandle(data)
+    useEffect(() => {
+        userListHandle(null)
     }, [data])
 
     return {

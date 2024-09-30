@@ -23,7 +23,7 @@ export const userApi = createApi({
       }),
     }),
 
-    updateUser: builder.mutation<iUser, { id: string, user: Partial<iUser> }>({
+    updateUser: builder.mutation<iUser, { id: string, user: Partial<iUser | unknown> }>({
       query: ({ id, user }) => ({
         url: `${HTTP_LIST.HTTP_USER_KEY_URL}/${id}`,
         method: 'PUT',

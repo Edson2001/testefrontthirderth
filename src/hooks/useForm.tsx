@@ -8,7 +8,7 @@ const userFormSchema = z.object({
   email: z.string().email("Deve ser um email válido"),
 });
 
-type UserFormFields = z.infer<typeof userFormSchema>;
+export type UserFormFields = z.infer<typeof userFormSchema>;
 
 export const useUserForm = (defaultValues?: Partial<UserFormFields>) => {
 
