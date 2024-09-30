@@ -5,7 +5,7 @@ import Confirmation from "../molecules/Confirmation"
 
 export default function User() {
 
-  const { data, isLoading, isConfirmationOpen,  isDeletingUser} = useUser()
+  const { data, isLoading, isConfirmationOpen, isDeletingUser, handleClose, confirmDelete } = useUser()
 
   return (
     <main className="flex flex-col justify-center items-center w-full px-4">
@@ -18,9 +18,9 @@ export default function User() {
         onEdit={() => console.log("")}
       />
 
-      <Confirmation 
-        handleClose={()=> console.log("")}
-        handleOk={()=> console.log("")}
+      <Confirmation
+        handleClose={handleClose}
+        handleOk={confirmDelete}
         headerInformation="Deletar"
         information="Deseja deletar este usuário?"
         loading={isDeletingUser}
