@@ -4,7 +4,7 @@ import { useUser } from "@/src/hooks/user.hook"
 import Confirmation from "../molecules/Confirmation"
 import UserModal from "../molecules/user-modal"
 import Button from '@mui/material/Button';
-
+import Stack from '@mui/material/Stack';
 export default function User() {
 
   const {
@@ -24,10 +24,10 @@ export default function User() {
   } = useUser()
 
   return (
-    <main className="flex flex-col justify-center items-center w-full px-1 ">
-      <div className="flex justify-between items-center">
+    <Stack spacing={3} sx={{ mx: { xs: 2, sm: 3, md: 5, lg: 10 } }}>
+      <div className="flex justify-between  flex-wrap items-center w-full">
         <h1 className="text-white tx-xl mb-5 mt-4 font-bold">Tabele de controle de usuários</h1>
-        <Button onClick={()=>handleOpenModal(null)} fullWidth variant="contained" >Criar usuário</Button>
+        <Button onClick={()=>handleOpenModal(null)}   variant="contained" >Criar usuário</Button>
       </div>
 
       <TableUser
@@ -55,6 +55,6 @@ export default function User() {
         defaultValues={selectedUser}
       />
 
-    </main>
+    </Stack>
   )
 }
