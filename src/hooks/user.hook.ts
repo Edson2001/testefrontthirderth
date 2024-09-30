@@ -6,7 +6,7 @@ import {
     useDeleteUserMutation
 } from "@/src/services/user.service"
 import toast from 'react-hot-toast';
-import { iUser } from "@/src/app/@types/User.type"
+import { iUser } from "@/src/@types/User.type"
 
 export const useUser = () => {
 

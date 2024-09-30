@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid2';
 import { Controller } from 'react-hook-form';
 import { useUserForm } from "@/src/hooks/useForm"
 import { UserFormFields } from '@/src/hooks/useForm';
-import { iUser } from "@/src/app/@types/User.type"
+import { iUser } from "@/src/@types/User.type"
 export function UserForm({ isEdit, loading, onSubmit, defaultValues }:
     { isEdit: boolean, loading: boolean, onSubmit: (data: UserFormFields) => void, defaultValues?: iUser  | null}): React.JSX.Element {
 

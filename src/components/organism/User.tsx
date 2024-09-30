@@ -25,7 +25,7 @@ export default function User() {
 
   return (
     <main className="flex flex-col justify-center items-center w-full px-1 ">
-      <div>
+      <div className="flex justify-between items-center">
         <h1 className="text-white tx-xl mb-5 mt-4 font-bold">Tabele de controle de usuários</h1>
         <Button onClick={()=>handleOpenModal(null)} fullWidth variant="contained" >Criar usuário</Button>
       </div>

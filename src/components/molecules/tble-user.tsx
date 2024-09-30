@@ -4,7 +4,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Divider from '@mui/material/Divider';
-import {iUser} from "@/src/app/@types/User.type"
+import {iUser} from "@/src/@types/User.type"
 import {Trash, Pencil} from "lucide-react"
 import { useMemo } from 'react';
 import {
