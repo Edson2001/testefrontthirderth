@@ -10,7 +10,7 @@ const userFormSchema = z.object({
 
 export type UserFormFields = z.infer<typeof userFormSchema>;
 
-export const useUserForm = (defaultValues?: Partial<UserFormFields>) => {
+export const useUserForm = (defaultValues?: Partial<UserFormFields> | null) => {
 
   const form = useReactHookForm<UserFormFields>({
     resolver: zodResolver(userFormSchema),
