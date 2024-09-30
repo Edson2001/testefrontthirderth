@@ -17,10 +17,10 @@ export const useUser = () => {
     const [updateUser, { isLoading: isUpdatingUser, error: updateUserError }] = useUpdateUserMutation();
     const [deleteUser, { isLoading: isDeletingUser, error: deleteUserError }] = useDeleteUserMutation();
 
-    const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+    const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
     const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
 
-    const handleDelete = (userId: string) => {
+    const handleDelete = (userId: number) => {
         setSelectedUserId(userId);
         setIsConfirmationOpen(true);
     };
@@ -30,7 +30,8 @@ export const useUser = () => {
             try {
                 await deleteUser(selectedUserId).unwrap();
                 toast('Usuário deletado com sucesso')
-            } catch (error) {
+            } catch (error: unknown) {
+                console.log(error)
                 toast.error('Erro ao deletar o usuário:')
             } finally {
                 setIsConfirmationOpen(false);
