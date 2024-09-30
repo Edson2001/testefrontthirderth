@@ -1,5 +1,5 @@
 'use client'
-import { TableUser } from "../molecules/tble-user"
+import { TableUser } from "../molecules/table-user"
 import { useUser } from "@/src/hooks/user.hook"
 import Confirmation from "../molecules/Confirmation"
 import UserModal from "../molecules/user-modal"
