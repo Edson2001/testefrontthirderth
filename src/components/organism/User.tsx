@@ -1,11 +1,10 @@
 'use client'
-import { TableUser } from "../mocules/tble-user"
+import { TableUser } from "../molecules/tble-user"
 import { useUser } from "@/src/hooks/user.hook"
 
 export default function User() {
 
   const { data, isLoading } = useUser()
-  console.log(data, 'data', isLoading)
 
   return (
     <main className="flex flex-col justify-center items-center w-full px-4">
