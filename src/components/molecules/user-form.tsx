@@ -12,7 +12,7 @@ import { useUserForm } from "@/src/hooks/useForm"
 import { UserFormFields } from '@/src/hooks/useForm';
 import { iUser } from "@/src/app/@types/User.type"
 export function UserForm({ isEdit, loading, onSubmit, defaultValues }:
-    { isEdit: boolean, loading: boolean, onSubmit: (data: UserFormFields) => void, defaultValues: iUser }): React.JSX.Element {
+    { isEdit: boolean, loading: boolean, onSubmit: (data: UserFormFields) => void, defaultValues?: iUser  | null}): React.JSX.Element {
 
     const { control, handleSubmit, formState: { errors } } = useUserForm(defaultValues);
 

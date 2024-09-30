@@ -10,7 +10,7 @@ import { UserForm } from "./user-form"
 import { UserFormFields } from '@/src/hooks/useForm'; 
 
 export default function UserModal({ handleClose, handleSave, open, loading, isEdit, defaultValues }:
-    { open: boolean, handleClose: () => void, handleSave: (data: UserFormFields) => void, loading: boolean, isEdit: boolean, defaultValues: iUser }) {
+    { open: boolean, handleClose: () => void, handleSave: (data: UserFormFields) => void, loading: boolean, isEdit: boolean, defaultValues?: iUser | null }) {
     return (
         <React.Fragment>
             <Dialog

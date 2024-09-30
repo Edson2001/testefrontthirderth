@@ -29,7 +29,7 @@ export const useUser = () => {
         setUserList(data)
     }, [])
 
-    const handleDelete = (userId: number) => {
+    const handleDelete = (userId: number | null) => {
         setSelectedUserId(userId);
         setIsConfirmationOpen(true);
     };
@@ -97,7 +97,7 @@ export const useUser = () => {
     };
 
     useEffect(() => {
-        userListHandle(null)
+        userListHandle(data ?? [])
     }, [data])
 
     return {

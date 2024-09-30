@@ -33,7 +33,7 @@ export default function User() {
       <TableUser
         fullRows={userList ?? []}
         loading={isLoading}
-        onDelete={(user) => handleDelete(user?.id)}
+        onDelete={(user) => handleDelete(user?.id ?? null)}
         onEdit={(user) => handleOpenModal(user)}
       />
 
